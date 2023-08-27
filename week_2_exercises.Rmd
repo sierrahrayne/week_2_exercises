@@ -1,0 +1,177 @@
+---
+title: "Week 2 Exercises"
+author: "J.Blondeau"
+date: "2023-08-27"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data Types and Structures in R {.tabset}
+
+In this lesson, we will explore different data types and structures in R and understand how they are used to organize and store data.
+
+### Data Types
+
+#### Numeric
+
+Numeric data types represent numbers, both integers and decimals.
+
+```{r}
+# Numeric data example
+x <- 10 #integer
+y <- 3.14 #floating
+```
+
+#### Character
+Character data types represent text or strings.
+
+```{r}
+# Character data example
+name <- "Alice"
+greeting <- "Hello, R!"
+
+```
+#### Logical (Boolean)
+Logical data types represent binary values: TRUE or FALSE.
+
+```{r}
+# Logical data example
+is_student <- TRUE
+is_adult <- FALSE
+
+```
+### Data Structures
+
+#### Vectors
+Vectors are sequences of elements of the same data type.
+
+```{r}
+# Vector example
+numbers <- c(1, 2, 3, 4, 5)
+fruits <- c("apple", "banana", "orange")
+
+```
+
+#### Data Frames
+Data frames are tabular structures with rows and columns of different data types.
+
+```{r}
+# Data frame example
+df <- data.frame(name = c("Alice", "Bob", "Charlie"),
+                 age = c(25, 30, 22),
+                 is_student = c(TRUE, FALSE, TRUE))
+
+```
+
+#### Lists
+Lists are collections of elements, which can be of different data types.
+
+```{r}
+# List example
+my_list <- list(numbers, fruits, df)
+
+```
+
+### Reading Data from External Files
+
+#### read_csv() Function
+
+The `read_csv()` function from the `readr` package allows you to read data from CSV files.
+
+```{r}
+# Reading CSV file using read_csv()
+library(readr)
+
+csv_data <- read_csv("data/sttstj_2023_boat_logs.csv", show_col_types = F)
+
+head(csv_data)
+
+```
+
+#### read_xlsx
+
+The `read_xlsx()` function from the `readxl`` package allows you to read data from excel files and specify the sheet in necessary.
+
+```{r}
+library(readxl)
+
+xlsx_data <- read_xlsx("data/sttstj_all_sites.xlsx", sheet = "locations")
+
+head(xlsx_data)
+
+```
+
+### Inspecting data
+
+#### class() Function
+
+The `class()` function helps you determine the class (data type) of an R object.
+
+```{r}
+# Using class() to determine the class of an object
+x <- 5
+y <- "Hello, R!"
+class(x)   # Output: "numeric"
+class(y)   # Output: "character"
+```
+
+#### str() Function
+
+The str() function provides a concise summary of an R object's structure.
+
+```{r}
+# Using str() to understand the structure of an object
+data <- list(name = "Alice", age = 30, is_student = TRUE)
+str(data)
+```
+
+#### glimpse() Function
+
+The glimpse() function from the dplyr package offers a compact overview of data frames.
+
+```{r}
+# Using glimpse() to get an overview of a data frame
+library(dplyr)
+
+df <- data.frame(name = c("Alice", "Bob", "Jeremiah"), age = c(25, 30, 46))
+glimpse(df)
+
+```
+
+### Exporting Data to External Files
+
+#### write_csv() Function
+
+The `write_csv()` function from the `readr`` package allows you to export data to CSV files.
+
+```{r}
+# Creating a data frame
+df <- data.frame(name = c("Alice", "Bob", "Jeremiah"),
+                 age = c(25, 30,46))
+
+# Exporting data to CSV using write_csv()
+library(readr)
+write_csv(df, "data/csv_output.csv")
+```
+
+#### write_xlsx() Function
+
+The write_xlsx() function from the writr package lets you export data to Excel (.xlsx) files.
+
+```{r}
+library(writexl)
+# Creating multiple data frames
+df <- data.frame(name = c("Alice", "Bob", "Jeremiah"),
+                 age = c(25, 30,46))
+
+df_another <- data.frame(name = c("Charlie", "David", "Shirley"),
+                          age = c(22, 28, 35))
+
+# Exporting data to Excel using write_xlsx()
+write_xlsx(list("Sheet1" = df, "Sheet2" = df_another), "data/excel_output.xlsx")
+
+```
+
