@@ -51,7 +51,7 @@ Vectors are sequences of elements of the same data type.
 ```{r}
 # Vector example
 numbers <- c(1, 2, 3, 4, 5)
-fruits <- c("apple", "banana", "orange")
+fruits <- c("fig", "banana", "orange")
 
 ```
 
